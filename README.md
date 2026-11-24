@@ -230,6 +230,15 @@ O sistema mistura:
 A **interoperabilidade vem do protocolo comum** (`docs/protocolo.md`): quem
 seguir o contrato conversa com o sistema, não importa a linguagem.
 
+**Duas linguagens no mesmo código:** `teste/heterogeneidade.py` é um script
+Python que executa o cliente C++ como um comando (`subprocess.run(["./bin/cliente", ...])`).
+O C++ envia um arquivo e o Python lê; depois o Python envia e o C++ lê.
+
+```bash
+./bin/principal                     # num terminal
+python3 teste/heterogeneidade.py    # em outro
+```
+
 ### 7. Dificuldades de sistemas distribuídos
 
 | Dificuldade | Onde aparece aqui | O que fizemos |
