@@ -23,6 +23,7 @@ Se um deles parar de funcionar, os arquivos continuam disponíveis nos outros.
 **O que dizer:**
 Quando tudo fica guardado em um computador só, qualquer problema nele afeta todo mundo.
 Três coisas podem dar errado:
+
 1. o computador desliga, e ninguém consegue pegar os arquivos;
 2. o disco estraga, e os arquivos somem;
 3. duas pessoas salvam o mesmo arquivo ao mesmo tempo, e ele fica bagunçado.
@@ -36,6 +37,7 @@ A nossa solução: fazer cópias automáticas em outros computadores e organizar
 ## Slide 3 — O sistema em quatro passos (Pessoa A, 1 minuto)
 
 **O que dizer (seguindo o desenho):**
+
 1. **Envia:** a pessoa manda um arquivo para o computador principal.
 2. **Copia:** o principal guarda o arquivo e manda uma cópia para dois computadores reserva (os backups).
 3. **Sincroniza:** os dois reservas conversam entre si e completam o que estiver faltando.
@@ -50,10 +52,11 @@ Cada um desses é um programa separado, e eles só conversam pela rede. Por isso
 ## Slide 4 — Cliente–servidor em camadas (Pessoa A, 1 minuto)
 
 **O que dizer:**
+
 - **Cliente–servidor:** um lado pede, o outro atende. Igual a um cliente e um atendente de loja.
 - **Camadas:** o sistema é organizado como um prédio. Cada andar faz uma tarefa só e conversa apenas com o andar de baixo.
-  - Do lado de quem pede: o programa da pessoa → o "cardápio" de pedidos → quem embrulha o pedido → a rede.
-  - Do lado de quem atende: a rede → quem desembrulha o pedido → quem guarda o arquivo no disco → os servidores.
+    - Do lado de quem pede: o programa da pessoa → o "cardápio" de pedidos → quem embrulha o pedido → a rede.
+    - Do lado de quem atende: a rede → quem desembrulha o pedido → quem guarda o arquivo no disco → os servidores.
 - O servidor atende várias pessoas ao mesmo tempo, porque cada uma ganha o seu próprio "atendente".
 
 **Frase para não esquecer:** "Um pede, o outro atende; e cada andar faz uma coisa só."
@@ -66,11 +69,13 @@ Cada um desses é um programa separado, e eles só conversam pela rede. Por isso
 
 **O que dizer:**
 Três palavras, explicadas com um restaurante:
+
 - **API** é o **cardápio**: mostra o que dá para pedir (listar, enviar, baixar e apagar arquivos).
 - **Middleware** é o **garçom**: leva o pedido até a cozinha e traz a resposta. A pessoa não precisa saber como.
 - **RPC** é pedir algo para outro computador **como se fosse no seu próprio**.
 
 Seguindo o desenho, a pessoa pede para baixar a nota.txt:
+
 1. o pedido sai do programa da pessoa;
 2. o **proxy** embrulha o pedido numa mensagem (é o "representante" do servidor do lado de quem pede);
 3. a rede leva a mensagem;
@@ -84,6 +89,7 @@ Seguindo o desenho, a pessoa pede para baixar a nota.txt:
 ## Slide 6 — Um protocolo comum para C++ e Python (Pessoa B, 1 minuto)
 
 **O que dizer:**
+
 - **Protocolo** é a regra de como escrever as mensagens, como o jeito certo de preencher um envelope.
 - A nossa mensagem é uma linha com quatro partes: número do pedido, o que fazer, qual arquivo e o tamanho.
 - Fizemos dois programas para a pessoa usar, um em C++ e outro em Python, escritos separadamente.
@@ -98,6 +104,7 @@ Seguindo o desenho, a pessoa pede para baixar a nota.txt:
 ## Slide 7 — O que acontece quando algo cai (Pessoa B, 1 minuto e 15 segundos)
 
 **O que dizer:**
+
 - **Replicar** é guardar cópias do mesmo arquivo em vários computadores.
 - **Lado esquerdo, um reserva caiu:** o principal tenta mandar a cópia 3 vezes, anota que não conseguiu e continua funcionando normalmente.
   Isso se chama **falha parcial**: uma parte caiu, o resto segue.
@@ -114,11 +121,12 @@ Seguindo o desenho, a pessoa pede para baixar a nota.txt:
 ## Slide 8 — Os backups conversam entre si (Pessoa A, 1 minuto)
 
 **O que dizer:**
+
 - **Peer-to-peer** quer dizer que computadores iguais conversam direto, sem ninguém no meio.
 - Exemplo do nosso teste: o reserva 2 ficou desligado e perdeu um arquivo. Quando ele liga:
-  1. pergunta ao reserva 1: "o que você tem?";
-  2. o reserva 1 responde a lista;
-  3. o reserva 2 pede só o que está faltando.
+    1. pergunta ao reserva 1: "o que você tem?";
+    2. o reserva 1 responde a lista;
+    3. o reserva 2 pede só o que está faltando.
 - Isso acontece quando o reserva liga e sempre que chega um arquivo novo.
 - Se os dois tiverem o mesmo arquivo, fica o mais novo. Cada arquivo tem um **número de versão** que sobe a cada mudança.
 
@@ -131,13 +139,14 @@ Seguindo o desenho, a pessoa pede para baixar a nota.txt:
 ## Slide 9 — Cinco clientes gravando o mesmo arquivo (Pessoa B, 1 minuto e 30 segundos)
 
 **O que dizer:**
+
 - Fizemos um teste em que cinco pessoas salvam, **ao mesmo tempo**, textos diferentes no **mesmo arquivo**:
   uma só com a letra A, outra só com B, e assim por diante.
 - **Sem proteção (vermelho):** todos escrevem juntos e o arquivo fica misturado, com pedaços de cada um.
 - **Com proteção (azul):** o arquivo fica certinho, com o texto de uma pessoa só.
 - Duas proteções:
-  - **Mutex** é uma **tranca** no arquivo: enquanto um salva, os outros esperam a vez.
-  - **Semáforo** é um **limite de vagas**: no máximo 3 envios ao mesmo tempo, e o quarto espera na fila.
+    - **Mutex** é uma **tranca** no arquivo: enquanto um salva, os outros esperam a vez.
+    - **Semáforo** é um **limite de vagas**: no máximo 3 envios ao mesmo tempo, e o quarto espera na fila.
 - Esses resultados são reais, do nosso teste.
 
 **Frase para não esquecer:** "Sem tranca, mistura. Com tranca, um de cada vez."
