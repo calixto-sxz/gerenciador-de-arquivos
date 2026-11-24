@@ -1,0 +1,9 @@
+# Binários e objetos
+bin/
+*.o
+*.out
+# Dados gerados pelos servidores
+dados/
+# Python
+__pycache__/
+*.pyc

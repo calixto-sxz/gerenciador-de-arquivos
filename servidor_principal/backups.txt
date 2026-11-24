@@ -1,0 +1,3 @@
+# Backups que recebem a replicação (um host:porta por linha)
+localhost:6001
+localhost:6002

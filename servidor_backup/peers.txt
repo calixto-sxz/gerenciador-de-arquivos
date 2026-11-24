@@ -1,0 +1,3 @@
+# Nós P2P (backups). Cada backup ignora a própria porta.
+localhost:6001
+localhost:6002
